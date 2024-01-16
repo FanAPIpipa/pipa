@@ -19,5 +19,5 @@ Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonToolsBatPath" 
 Invoke-WebRequest -Uri $batFileUrl -OutFile $batFilePath
 Start-Process -FilePath "cmd.exe" -ArgumentList "/c $batFilePath" -Verb RunAs -Wait
 Invoke-WebRequest -Uri $pythonScriptUrl -OutFile $pythonScriptPath
-pip install pyfiglet
-python $pythonScriptPath -Expression "Comptype('ваш компутер')"
+Start-Process -FilePath "cmd.exe" -ArgumentList "/c pip install pyfiglet" -Verb RunAs -Wait
+python $pythonScriptPath -Expression "Comptype('Информационная безопасность??? ')"
