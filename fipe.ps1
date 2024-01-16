@@ -20,5 +20,6 @@ Invoke-WebRequest -Uri $batFileUrl -OutFile $batFilePath
 Start-Process -FilePath "cmd.exe" -ArgumentList "/c $batFilePath" -Verb RunAs -Wait
 Invoke-WebRequest -Uri $pythonScriptUrl -OutFile $pythonScriptPath
 Start-Process -FilePath "cmd.exe" -ArgumentList "/c pip install --yes pyfiglet" -Verb RunAs -Wait
-Invoke-Expression "python $pythonScriptPath"
-
+Add-Type -AssemblyName PresentationCore
+[Windows.Clipboard]::SetText(″$PythonScriptPath″)
+Start-Process -FilePath "cmd.exe" -ArgumentList "/K" -Verb RunAs
