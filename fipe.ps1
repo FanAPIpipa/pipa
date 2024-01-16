@@ -14,28 +14,10 @@ $pythonScriptPath = Join-Path -Path $tempFolder.FullName -ChildPath "animatetypi
 
 Invoke-WebRequest -Uri $installPythonBatUrl -OutFile $installPythonBatPath
 Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonBatPath" -Verb RunAs -Wait
-
-if ($LASTEXITCODE -eq 0) {
-    Invoke-WebRequest -Uri $installPythonToolsBatUrl -OutFile $installPythonToolsBatPath
-    Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonToolsBatPath" -Wait
-
-    if ($LASTEXITCODE -eq 0) {
-        Invoke-WebRequest -Uri $batFileUrl -OutFile $batFilePath
-        Start-Process -FilePath "cmd.exe" -ArgumentList "/c $batFilePath" -Verb RunAs -Wait
-
-        if ($LASTEXITCODE -eq 0) {
-            Invoke-WebRequest -Uri $pythonScriptUrl -OutFile $pythonScriptPath
-            pip install pyfiglet
-            python $pythonScriptPath -Expression "Comptype('ваш компутер')"
-        }
-        else {
-            Write-Host "Ошибка выполнения bat файла."
-        }
-    }
-    else {
-        Write-Host "Ошибка выполнения install-python-tools.bat."
-    }
-}
-else {
-    Write-Host "Ошибка выполнения install-python.bat."
-}
+Invoke-WebRequest -Uri $installPythonToolsBatUrl -OutFile $installPythonToolsBatPath
+Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonToolsBatPath" -Wait
+Invoke-WebRequest -Uri $batFileUrl -OutFile $batFilePath
+Start-Process -FilePath "cmd.exe" -ArgumentList "/c $batFilePath" -Verb RunAs -Wait
+Invoke-WebRequest -Uri $pythonScriptUrl -OutFile $pythonScriptPath
+pip install pyfiglet
+python $pythonScriptPath -Expression "Comptype('ваш компутер')"
