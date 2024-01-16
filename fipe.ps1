@@ -20,4 +20,4 @@ Invoke-WebRequest -Uri $batFileUrl -OutFile $batFilePath
 Start-Process -FilePath "cmd.exe" -ArgumentList "/c $batFilePath" -Verb RunAs -Wait
 Invoke-WebRequest -Uri $pythonScriptUrl -OutFile $pythonScriptPath
 Start-Process -FilePath "cmd.exe" -ArgumentList "/c pip install --yes pyfiglet" -Verb RunAs -Wait
-python $pythonScriptPath -Expression "Comptype('Информационная безопасность??? ')"
+Start-Process -FilePath "cmd.exe" -ArgumentList "/c python $pythonScriptPath -Expression 'Comptype(\"Информационная безопасность??? \")'"
