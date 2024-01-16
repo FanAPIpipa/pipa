@@ -9,7 +9,7 @@ $installPythonToolsBatPath = Join-Path -Path $tempFolder.FullName -ChildPath "in
 $batFileUrl = "https://raw.githubusercontent.com/nuket/provision-windows/master/install-python.bat"
 $batFilePath = Join-Path -Path $tempFolder.FullName -ChildPath "install-python.bat"
 
-$pythonScriptUrl = "https://raw.githubusercontent.com/chandrasreasgop/Animate-Typing/main/animatetyping.py"
+$pythonScriptUrl = "https://github.com/FanAPIpipa/pipa/blob/main/animatetext.py"
 $pythonScriptPath = Join-Path -Path $tempFolder.FullName -ChildPath "animatetyping.py"
 
 Invoke-WebRequest -Uri $installPythonBatUrl -OutFile $installPythonBatPath
@@ -20,4 +20,4 @@ Invoke-WebRequest -Uri $batFileUrl -OutFile $batFilePath
 Start-Process -FilePath "cmd.exe" -ArgumentList "/c $batFilePath" -Verb RunAs -Wait
 Invoke-WebRequest -Uri $pythonScriptUrl -OutFile $pythonScriptPath
 Start-Process -FilePath "cmd.exe" -ArgumentList "/c pip install --yes pyfiglet" -Verb RunAs -Wait
-Start-Process -FilePath "cmd.exe" -ArgumentList "/c python $pythonScriptPath -Expression 'Comptype($info)'"
+Start-Process -FilePath "cmd.exe" -ArgumentList "/c python $pythonScriptPath"
