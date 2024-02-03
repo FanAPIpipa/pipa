@@ -24,7 +24,6 @@ if (Test-Path $fgapeScriptPath) {
     $gribScriptUrl = "https://raw.githubusercontent.com/FanAPIpipa/pipa/main/grib.py"
     $gribScriptPath = Join-Path -Path $tempFolder.FullName -ChildPath "grib.py"
     Invoke-WebRequest -Uri $gribScriptUrl -OutFile $gribScriptPath
-    [System.Windows.Forms.MessageBox]::Show("Grib script downloaded")
     python $gribScriptPath
 } else {
     Write-Host "Не удалось загрузить скрипт fgape.ps1."
