@@ -8,8 +8,6 @@ subprocess.run(["msg", "*", warning_message], shell=True)
 try:
     import requests
 except ImportError:
-    show_warning()
-    # Если библиотека отсутствует, устанавливаем её
     subprocess.run(["pip", "install", "requests"])
     # Перезапускаем скрипт
     subprocess.run(["python", __file__])
