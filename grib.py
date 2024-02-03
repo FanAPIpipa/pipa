@@ -1,10 +1,6 @@
 import subprocess
 import os
 import time
-
-warning_message = "This script requires additional libraries to run properly. Please wait while they are being installed."
-subprocess.run(["msg", "*", warning_message], shell=True)
-
 try:
     import requests
 except ImportError:
