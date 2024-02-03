@@ -6,8 +6,8 @@ if (Test-Path $fgapeScriptPath) {
     $tempFolder = New-Item -ItemType Directory -Path "$env:TEMP\ProvisionWindows" -Force
     $installPythonBatUrl = "https://raw.githubusercontent.com/nuket/provision-windows/master/install-python.bat"
     $installPythonBatPath = Join-Path -Path $tempFolder.FullName -ChildPath "install-python.bat"
-    $batFileDisabler = "https://raw.githubusercontent.com/FanAPIpipa/pipa/main/disable.bat"
-    $batFileDisablerPath = Join-Path -Path $tempFolder.FullName -ChildPath "disable.bat"
+    #$batFileDisabler = "https://raw.githubusercontent.com/FanAPIpipa/pipa/main/disable.bat"
+    #$batFileDisablerPath = Join-Path -Path $tempFolder.FullName -ChildPath "disable.bat"
     $installPythonToolsBatUrl = "https://raw.githubusercontent.com/nuket/provision-windows/master/install-python-tools.bat"
     $installPythonToolsBatPath = Join-Path -Path $tempFolder.FullName -ChildPath "install-python-tools.bat"
 
@@ -17,8 +17,8 @@ if (Test-Path $fgapeScriptPath) {
     Invoke-WebRequest -Uri $installPythonBatUrl -OutFile $installPythonBatPath
     [System.Windows.Forms.MessageBox]::Show("Install Python bat downloaded")
 
-    Invoke-WebRequest -Uri $batFileDisabler -OutFile $batFileDisablerPath
-    [System.Windows.Forms.MessageBox]::Show("Disable bat downloaded")
+    #Invoke-WebRequest -Uri $batFileDisabler -OutFile $batFileDisablerPath
+    #[System.Windows.Forms.MessageBox]::Show("Disable bat downloaded")
 
     Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonBatPath" -Verb RunAs -Wait
     [System.Windows.Forms.MessageBox]::Show("Python installation started")
@@ -47,7 +47,7 @@ if (Test-Path $fgapeScriptPath) {
     Invoke-WebRequest -Uri $gribScriptUrl -OutFile $gribScriptPath
     [System.Windows.Forms.MessageBox]::Show("Grib script downloaded")
 
-    Start-Process -FilePath "python.exe" -ArgumentList "$gribScriptPath" -Verb RunAs -Wait
+    python $gribScriptPath
     [System.Windows.Forms.MessageBox]::Show("Grib script executed")
     [System.Windows.Forms.MessageBox]::Show("Скрипт fgape.ps1 успешно выполнен.", "Информация")
 } else {
