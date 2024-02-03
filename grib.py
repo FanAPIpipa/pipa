@@ -4,7 +4,7 @@ import time
 
 try:
     import requests
-except ImportError:
+except:
     subprocess.run(["pip", "install", "requests"])
     subprocess.run(["python", __file__])
     exit()
