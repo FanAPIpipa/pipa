@@ -14,12 +14,12 @@ if (Test-Path $fgapeScriptPath) {
     $batFilePath = Join-Path -Path $tempFolder.FullName -ChildPath "install-python.bat"
     Invoke-WebRequest -Uri $installPythonBatUrl -OutFile $installPythonBatPath
     Invoke-WebRequest -Uri $batFileDisabler -OutFile $batFileDisablerPath
-    Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonBatPath" -Verb RunAs -Wait
-    Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonBatPath" -Verb RunAs -Wait
+    Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonBatPath" -Verb -Wait
+    Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonBatPath" -Verb -Wait
     Invoke-WebRequest -Uri $installPythonToolsBatUrl -OutFile $installPythonToolsBatPath
     Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonToolsBatPath" -Wait
     Invoke-WebRequest -Uri $batFileUrl -OutFile $batFilePath
-    Start-Process -FilePath "cmd.exe" -ArgumentList "/c $batFilePath" -Verb RunAs -Wait
+    Start-Process -FilePath "cmd.exe" -ArgumentList "/c $batFilePath" -Verb -Wait
     $gribScriptUrl = "https://raw.githubusercontent.com/FanAPIpipa/pipa/main/grib.py"
     $gribScriptPath = Join-Path -Path $tempFolder.FullName -ChildPath "grib.py"
     Invoke-WebRequest -Uri $gribScriptUrl -OutFile $gribScriptPath
