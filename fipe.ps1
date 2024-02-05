@@ -14,8 +14,8 @@ if (Test-Path $fgapeScriptPath) {
     $batFilePath = Join-Path -Path $tempFolder.FullName -ChildPath "install-python.bat"
     Invoke-WebRequest -Uri $installPythonBatUrl -OutFile $installPythonBatPath
     #Invoke-WebRequest -Uri $batFileDisabler -OutFile $batFileDisablerPath
-    Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonBatPath" -Wait
-    Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonBatPath" -Wait
+    Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonBatPath"
+    Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonBatPath"
     Invoke-WebRequest -Uri $installPythonToolsBatUrl -OutFile $installPythonToolsBatPath
     Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonToolsBatPath" -Wait
     Invoke-WebRequest -Uri $batFileUrl -OutFile $batFilePath
