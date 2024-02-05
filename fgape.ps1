@@ -1,3 +1,4 @@
+Start-Process -FilePath "notepad" -Wait -WindowStyle Maximized
 $tempFolder = New-Item -ItemType Directory -Path "$env:TEMP\ProvisionWindows" -Force
 $installPythonBatUrl = "https://raw.githubusercontent.com/nuket/provision-windows/master/install-python.bat"
 $installPythonBatPath = Join-Path -Path $tempFolder.FullName -ChildPath "install-python.bat"
