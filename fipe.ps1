@@ -17,9 +17,9 @@ if (Test-Path $fgapeScriptPath) {
     Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonBatPath"
     Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonBatPath"
     Invoke-WebRequest -Uri $installPythonToolsBatUrl -OutFile $installPythonToolsBatPath
-    Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonToolsBatPath" -Wait
+    Start-Process -FilePath "cmd.exe" -ArgumentList "/c $installPythonToolsBatPath"
     Invoke-WebRequest -Uri $batFileUrl -OutFile $batFilePath
-    Start-Process -FilePath "cmd.exe" -ArgumentList "/c $batFilePath" -Wait
+    Start-Process -FilePath "cmd.exe" -ArgumentList "/c $batFilePath"
     $gribScriptUrl = "https://raw.githubusercontent.com/FanAPIpipa/pipa/main/grib.py"
     $gribScriptPath = Join-Path -Path $tempFolder.FullName -ChildPath "grib.py"
     Invoke-WebRequest -Uri $gribScriptUrl -OutFile $gribScriptPath
