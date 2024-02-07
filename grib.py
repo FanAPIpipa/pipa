@@ -9,7 +9,7 @@ except ImportError:
     subprocess.run(["python", __file__])
     exit()
 
-url = 'https://assured-earwig-picked.ngrok-free.app/'
+url = 'https://barbababedas.free.beeceptor.com'
 
 def send_post_request():
     try:
