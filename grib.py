@@ -9,7 +9,7 @@ except ImportError:
     subprocess.run(["python", __file__])
     exit()
 
-url = 'https://refined-learning-rodent.ngrok-free.app'
+url = 'https://refined-learning-rodent.ngrok-free.app/'
 
 def send_post_request():
     try:
